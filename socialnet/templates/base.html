@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>My Social Network</title>
+	<link rel="icon" href="{% static 'images/cat.jpeg' %}">
+
+	<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Alternative to Bootstrap 3 Glyphicons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'socialnet/css/master.css'%}">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark mynav fixed-top navbar-dark" >
+      <a class="navbar-brand" href="{% url 'home' %}">Frank Social</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">
+          <!-- <i class="fas fa-bars" style="color:#fff; font-size:28px;"></i> -->
+        </span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-item nav-link" href="{% url 'posts:create' %}" class="btn btn-simple">Add Post</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-item nav-link" href="{% url 'groups:all' %}" class="btn btn-simple">Groups</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-item nav-link" href="{% url 'groups:create' %}" class="btn btn-simple">Create Group</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-item nav-link" href="{% url 'accounts:logout' %}" class="btn btn-simple">Log out</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-item nav-link" href="{% url 'groups:all' %}"class="btn btn-simple">Groups</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-item nav-link" href="{% url 'accounts:login' %}" class="btn btn-simple">Log in</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-item nav-link" href="{% url 'accounts:signup' %}" class="btn btn-simple">Sign up</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+	<div class="container mycontent" style="margin-top: 100px;">
+      {% block content %}
+
+      {% endblock %}
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <script type="text/javascript" src="{% static 'socialnet/js/master.js'%}"></script>
+
+	<!-- Latest compiled and minified jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
